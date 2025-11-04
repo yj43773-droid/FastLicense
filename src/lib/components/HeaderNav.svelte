@@ -1,0 +1,188 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { createEventDispatcher, onDestroy } from 'svelte';
+	import type { UserSummary } from '$lib/types';
+	import type { Theme } from '$lib/stores/ui';
+
+	const dispatch = createEventDispatcher<{
+		openAuth: void;
+		toggleTheme: void;
+	}>();
+
+	type NavLink = {
+		href: string;
+		label: string;
+		requiresAuth?: boolean;
+	};
+
+const navLinks: NavLink[] = [
+	{ href: '/courses', label: '강의' },
+	{ href: '/certifications', label: '자격증' },
+	{ href: '/mypage', label: '마이페이지', requiresAuth: true }
+];
+
+	let { user, theme } = $props<{ user: UserSummary | null; theme: Theme }>();
+
+	let pathname = $state('/');
+
+	const unsubscribePage = page.subscribe(($page) => {
+		pathname = $page.url.pathname;
+	});
+
+	onDestroy(() => {
+		unsubscribePage();
+	});
+
+	const handleThemeToggle = () => {
+		dispatch('toggleTheme');
+	};
+
+const openAuthModal = () => {
+	dispatch('openAuth');
+};
+
+const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+</script>
+
+<header class="sticky top-0 z-50 glass-effect border-b border-base-200/50 shadow-lg">
+	<div class="navbar mx-auto w-full max-w-7xl px-4 py-2">
+	<div class="navbar-start gap-2 md:gap-4">
+		<details class="dropdown md:hidden">
+			<summary
+				class="btn btn-ghost btn-sm hover:bg-primary/10"
+				aria-label="메뉴 열기"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</summary>
+			<ul class="menu dropdown-content mt-3 w-56 rounded-2xl bg-base-100 p-2 shadow-xl border border-base-300 animate-fade-in">
+				{#each navLinks as link}
+					{#if !link.requiresAuth || user}
+						<li class:active={isActive(link.href)}>
+							<a
+								href={link.href}
+								class={`rounded-lg transition-all duration-200 hover:bg-primary/10 ${isActive(link.href) ? 'bg-primary/10 text-primary font-semibold' : ''}`}
+							>
+								{link.label}
+							</a>
+						</li>
+					{/if}
+				{/each}
+			</ul>
+		</details>
+			<a class="text-xl md:text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:opacity-80 transition-opacity" href="/">
+				FastSaaS
+			</a>
+			<nav class="hidden md:flex">
+				<ul class="menu menu-horizontal gap-1 px-1 py-1">
+					{#each navLinks as link}
+						{#if !link.requiresAuth || user}
+							<li>
+								<a
+									href={link.href}
+									class={`px-4 py-2 font-medium rounded-lg relative group transition-all duration-200 ${isActive(link.href) ? 'text-primary font-semibold' : ''}`}
+								>
+									{link.label}
+									{#if isActive(link.href)}
+										<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"></span>
+									{/if}
+									<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+								</a>
+							</li>
+						{/if}
+					{/each}
+				</ul>
+			</nav>
+		</div>
+		<div class="navbar-end gap-2 md:gap-3">
+			<button
+				type="button"
+				class="btn btn-ghost btn-sm btn-circle hover:bg-primary/10 hover:text-primary hover-scale"
+				onclick={handleThemeToggle}
+				aria-label="테마 전환"
+			>
+				<span class="swap swap-rotate" class:swap-active={theme === 'fastsaas-dark'}>
+					<span class="swap-on transition-transform duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+							<path
+								d="M10 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8m0 2a6 6 0 0 1-6-6A6 6 0 0 1 10 4a6 6 0 0 1 0 12m0-14a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1m0 16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1m8-7a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1M4 10a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1m13.071-5.071a1 1 0 0 1 0 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0M5.05 14.95a1 1 0 0 1 0 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0m11.314 1.414a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414M5.05 5.05a1 1 0 0 1-1.414 0l-.707-.707A1 1 0 1 1 4.343 2.93l.707.707a1 1 0 0 1 0 1.414"
+							/>
+						</svg>
+					</span>
+					<span class="swap-off transition-transform duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+							<path
+								d="M17.293 13.293a1 1 0 0 0-.968-.25A5 5 0 0 1 12 3a1 1 0 0 0-.75-1.238 8 8 0 1 0 6.043 12.836 1 1 0 0 0 0-1.305"
+							/>
+						</svg>
+					</span>
+				</span>
+			</button>
+		{#if user}
+			<details class="dropdown dropdown-end">
+				<summary
+					class="btn btn-ghost btn-sm gap-2 hover:bg-primary/10"
+					aria-label="사용자 메뉴 열기"
+				>
+					<div class="avatar placeholder">
+						<div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-accent text-primary-content shadow-md ring-2 ring-offset-2 ring-base-100">
+							<span class="text-sm font-bold">
+								{user.nickname?.slice(0, 1) ?? user.email.slice(0, 1).toUpperCase()}
+							</span>
+						</div>
+					</div>
+					<span class="hidden md:inline-flex text-sm font-medium max-w-[120px] truncate">{user.nickname ?? user.email}</span>
+				</summary>
+				<ul class="menu dropdown-content z-10 mt-3 w-56 rounded-2xl bg-base-100 p-2 shadow-xl border border-base-300 animate-fade-in">
+					<li class="menu-title px-4 py-2">
+						<div class="flex flex-col gap-0.5">
+							<span class="text-sm font-semibold text-base-content">{user.nickname ?? user.email}</span>
+							<span class="text-xs text-base-content/60">{user.email}</span>
+						</div>
+					</li>
+					<div class="divider my-1"></div>
+					<li>
+						<a href="/mypage" class="rounded-lg transition-all hover:bg-primary/10">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+							</svg>
+							마이페이지
+						</a>
+					</li>
+					<li>
+						<a href="/learning" class="rounded-lg transition-all hover:bg-primary/10">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+							</svg>
+							학습하기
+						</a>
+					</li>
+					<div class="divider my-1"></div>
+					<li>
+						<form method="post" action="/api/logout" class="w-full">
+							<button type="submit" class="w-full rounded-lg hover:bg-error/10 hover:text-error transition-all">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+								</svg>
+								로그아웃
+							</button>
+						</form>
+					</li>
+				</ul>
+			</details>
+		{:else}
+			<button
+				type="button"
+				class="group relative btn bg-gradient-to-r from-primary to-accent border-0 text-white text-sm md:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:brightness-110 gap-2 md:gap-2.5 px-4 md:px-6"
+				onclick={openAuthModal}
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+				</svg>
+				<span class="hidden md:inline">로그인</span>
+			</button>
+		{/if}
+		</div>
+	</div>
+</header>

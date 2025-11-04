@@ -1,0 +1,71 @@
+<script lang="ts">
+	import '../app.css';
+	import { browser } from '$app/environment';
+	import { onDestroy } from 'svelte';
+	import favicon from '$lib/assets/favicon.svg';
+	import HeaderNav from '$lib/components/HeaderNav.svelte';
+	import AuthModal from '$lib/components/AuthModal.svelte';
+import { theme, authModalState, type Theme } from '$lib/stores/ui';
+	import { currentUser } from '$lib/stores/auth';
+	import type { UserSummary } from '$lib/types';
+
+	let { children, data } = $props<{
+		children: unknown;
+		data: { user: UserSummary | null };
+	}>();
+
+	let currentTheme = $state<Theme>('fastsaas');
+	const unsubscribeTheme = theme.subscribe((value) => {
+		currentTheme = value;
+	});
+
+	let isAuthModalOpen = $state(false);
+	const unsubscribeAuthModal = authModalState.subscribe((value) => {
+		isAuthModalOpen = value;
+	});
+
+	let user = $state<UserSummary | null>(data.user ?? null);
+	let unsubscribeClientUser: (() => void) | null = null;
+
+	if (browser) {
+		unsubscribeClientUser = currentUser.subscribe((value) => {
+			user = value ?? data.user ?? null;
+		});
+	}
+
+	onDestroy(() => {
+		unsubscribeTheme();
+		unsubscribeAuthModal();
+		unsubscribeClientUser?.();
+	});
+
+	const openAuthModal = () => {
+		authModalState.open();
+	};
+
+	const closeAuthModal = () => {
+		authModalState.close();
+	};
+
+	const toggleTheme = () => {
+		theme.toggle();
+	};
+</script>
+
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
+
+<div data-theme={currentTheme} class="min-h-screen bg-base-100 text-base-content">
+	<HeaderNav
+		user={user}
+		theme={currentTheme}
+		on:openAuth={openAuthModal}
+		on:toggleTheme={toggleTheme}
+	/>
+	<main class="mx-auto w-full max-w-6xl px-4 py-8">
+		{@render children?.()}
+	</main>
+</div>
+
+<AuthModal open={isAuthModalOpen} onClose={closeAuthModal} />
