@@ -90,7 +90,7 @@
 
 {#if open}
 	<dialog class="modal modal-open animate-fade-in" open>
-		<div class="modal-box max-w-md space-y-6 bg-base-100 shadow-2xl rounded-3xl border border-base-300">
+		<div class="modal-box max-w-md space-y-6 bg-base-100 dark:bg-base-200 shadow-2xl rounded-2xl border border-base-200 dark:border-base-300 transition-colors duration-300">
 			<!-- Header with icon -->
 			<div class="flex items-start justify-between">
 				<div class="space-y-3 flex-1">
@@ -100,14 +100,14 @@
 						</svg>
 					</div>
 					<div>
-						<h2 class="text-2xl font-bold">빠른 로그인</h2>
+						<h2 class="text-2xl font-bold text-base-content">빠른 로그인</h2>
 						<p class="text-sm text-base-content/60 mt-1">SNS 계정으로 3초만에 시작하세요</p>
 					</div>
 				</div>
 				{#if !loadingProvider}
 					<button
 						type="button"
-						class="btn btn-ghost btn-sm btn-circle hover:bg-base-200"
+						class="btn btn-ghost btn-sm btn-circle hover:bg-base-200 dark:hover:bg-base-300 transition-colors"
 						onclick={handleDialogClose}
 						aria-label="닫기"
 					>
@@ -132,7 +132,7 @@
 			<div class="space-y-3">
 				<button
 					type="button"
-					class="btn btn-lg w-full gap-3 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 hover:border-primary/30 shadow-md hover:shadow-lg transition-all duration-300"
+					class="btn btn-lg w-full gap-3 bg-white dark:bg-base-300 hover:bg-gray-50 dark:hover:bg-base-400 text-gray-700 dark:text-base-content border-2 border-gray-200 dark:border-base-400 hover:border-primary/30 shadow-md hover:shadow-lg transition-all duration-300"
 					class:loading={loadingProvider === 'google'}
 					class:opacity-50={loadingProvider !== null && loadingProvider !== 'google'}
 					onclick={handleGoogleLogin}
@@ -181,7 +181,7 @@
 
 			<div class="text-center space-y-2">
 				<p class="text-sm text-base-content/70">회원이 아니신가요?</p>
-				<button type="button" class="btn btn-link btn-sm text-primary hover:text-primary/80" onclick={goToCourses}>
+				<button type="button" class="btn btn-link btn-sm text-primary hover:text-primary/80 transition-colors" onclick={goToCourses}>
 					추천 강의 둘러보기 →
 				</button>
 			</div>

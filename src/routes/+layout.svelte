@@ -1,11 +1,11 @@
 <script lang="ts">
 	import '../app.css';
 	import { browser } from '$app/environment';
-	import { onDestroy } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import favicon from '$lib/assets/favicon.svg';
 	import HeaderNav from '$lib/components/HeaderNav.svelte';
 	import AuthModal from '$lib/components/AuthModal.svelte';
-import { theme, authModalState, type Theme } from '$lib/stores/ui';
+	import { theme, authModalState, type Theme } from '$lib/stores/ui';
 	import { currentUser } from '$lib/stores/auth';
 	import type { UserSummary } from '$lib/types';
 
@@ -15,6 +15,17 @@ import { theme, authModalState, type Theme } from '$lib/stores/ui';
 	}>();
 
 	let currentTheme = $state<Theme>('fastsaas');
+
+	onMount(() => {
+		// Initialize theme from localStorage on mount
+		if (browser) {
+			const stored = localStorage.getItem('theme');
+			if (stored === 'fastsaas' || stored === 'fastsaas-dark') {
+				theme.setTheme(stored);
+			}
+		}
+	});
+
 	const unsubscribeTheme = theme.subscribe((value) => {
 		currentTheme = value;
 	});
@@ -56,7 +67,7 @@ import { theme, authModalState, type Theme } from '$lib/stores/ui';
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div data-theme={currentTheme} class="min-h-screen bg-base-100 text-base-content">
+<div data-theme={currentTheme} class="min-h-screen bg-base-100 text-base-content transition-colors duration-300">
 	<HeaderNav
 		user={user}
 		theme={currentTheme}

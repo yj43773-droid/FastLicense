@@ -44,25 +44,25 @@ const openAuthModal = () => {
 const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 </script>
 
-<header class="sticky top-0 z-50 glass-effect border-b border-base-200/50 shadow-lg">
-	<div class="navbar mx-auto w-full max-w-7xl px-4 py-2">
+<header class="sticky top-0 z-50 backdrop-blur-md border-b border-base-200/30 dark:border-base-300/30 shadow-md transition-all duration-300">
+	<div class="navbar mx-auto w-full max-w-7xl px-4 md:px-6 py-3">
 	<div class="navbar-start gap-2 md:gap-4">
 		<details class="dropdown md:hidden">
 			<summary
-				class="btn btn-ghost btn-sm hover:bg-primary/10"
+				class="btn btn-ghost btn-sm btn-circle hover:bg-base-200 dark:hover:bg-base-300 transition-colors"
 				aria-label="메뉴 열기"
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 				</svg>
 			</summary>
-			<ul class="menu dropdown-content mt-3 w-56 rounded-2xl bg-base-100 p-2 shadow-xl border border-base-300 animate-fade-in">
+			<ul class="menu dropdown-content mt-3 w-56 rounded-xl bg-base-100 dark:bg-base-200 p-2 shadow-2xl border border-base-200 dark:border-base-300 animate-fade-in">
 				{#each navLinks as link}
 					{#if !link.requiresAuth || user}
 						<li class:active={isActive(link.href)}>
 							<a
 								href={link.href}
-								class={`rounded-lg transition-all duration-200 hover:bg-primary/10 ${isActive(link.href) ? 'bg-primary/10 text-primary font-semibold' : ''}`}
+								class={`rounded-lg transition-all duration-200 ${isActive(link.href) ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-base-200 dark:hover:bg-base-300'}`}
 							>
 								{link.label}
 							</a>
@@ -75,19 +75,19 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 				FastSaaS
 			</a>
 			<nav class="hidden md:flex">
-				<ul class="menu menu-horizontal gap-1 px-1 py-1">
+				<ul class="menu menu-horizontal gap-1 px-2">
 					{#each navLinks as link}
 						{#if !link.requiresAuth || user}
 							<li>
 								<a
 									href={link.href}
-									class={`px-4 py-2 font-medium rounded-lg relative group transition-all duration-200 ${isActive(link.href) ? 'text-primary font-semibold' : ''}`}
+									class={`px-4 py-2 font-medium rounded-lg relative group transition-all duration-200 text-base-content hover:text-primary ${isActive(link.href) ? 'text-primary font-semibold' : ''}`}
 								>
 									{link.label}
 									{#if isActive(link.href)}
-										<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"></span>
+										<span class="absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-full"></span>
 									{/if}
-									<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary/30 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+									<span class="absolute bottom-0 left-0 right-0 h-1 bg-primary/20 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
 								</a>
 							</li>
 						{/if}
@@ -98,7 +98,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 		<div class="navbar-end gap-2 md:gap-3">
 			<button
 				type="button"
-				class="btn btn-ghost btn-sm btn-circle hover:bg-primary/10 hover:text-primary hover-scale"
+				class="btn btn-ghost btn-sm btn-circle hover:bg-base-200 dark:hover:bg-base-300 transition-colors"
 				onclick={handleThemeToggle}
 				aria-label="테마 전환"
 			>
@@ -122,11 +122,11 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 		{#if user}
 			<details class="dropdown dropdown-end">
 				<summary
-					class="btn btn-ghost btn-sm gap-2 hover:bg-primary/10"
+					class="btn btn-ghost btn-sm gap-2 hover:bg-base-200 dark:hover:bg-base-300 transition-colors"
 					aria-label="사용자 메뉴 열기"
 				>
 					<div class="avatar placeholder">
-						<div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-accent text-primary-content shadow-md ring-2 ring-offset-2 ring-base-100">
+						<div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-accent text-primary-content shadow-md">
 							<span class="text-sm font-bold">
 								{user.nickname?.slice(0, 1) ?? user.email.slice(0, 1).toUpperCase()}
 							</span>
@@ -134,8 +134,8 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 					</div>
 					<span class="hidden md:inline-flex text-sm font-medium max-w-[120px] truncate">{user.nickname ?? user.email}</span>
 				</summary>
-				<ul class="menu dropdown-content z-10 mt-3 w-56 rounded-2xl bg-base-100 p-2 shadow-xl border border-base-300 animate-fade-in">
-					<li class="menu-title px-4 py-2">
+				<ul class="menu dropdown-content z-10 mt-3 w-56 rounded-xl bg-base-100 dark:bg-base-200 p-2 shadow-2xl border border-base-200 dark:border-base-300 animate-fade-in">
+					<li class="menu-title px-4 py-3">
 						<div class="flex flex-col gap-0.5">
 							<span class="text-sm font-semibold text-base-content">{user.nickname ?? user.email}</span>
 							<span class="text-xs text-base-content/60">{user.email}</span>
@@ -143,7 +143,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 					</li>
 					<div class="divider my-1"></div>
 					<li>
-						<a href="/mypage" class="rounded-lg transition-all hover:bg-primary/10">
+						<a href="/mypage" class="rounded-lg transition-all duration-200 hover:bg-primary/10">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 							</svg>
@@ -151,7 +151,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 						</a>
 					</li>
 					<li>
-						<a href="/learning" class="rounded-lg transition-all hover:bg-primary/10">
+						<a href="/learning" class="rounded-lg transition-all duration-200 hover:bg-primary/10">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
 							</svg>
@@ -161,7 +161,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 					<div class="divider my-1"></div>
 					<li>
 						<form method="post" action="/api/logout" class="w-full">
-							<button type="submit" class="w-full rounded-lg hover:bg-error/10 hover:text-error transition-all">
+							<button type="submit" class="w-full rounded-lg hover:bg-error/10 hover:text-error transition-all duration-200">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
 								</svg>
@@ -177,7 +177,7 @@ const isActive = (href: string) => pathname === href || pathname.startsWith(`${h
 				class="group relative btn bg-gradient-to-r from-primary to-accent border-0 text-white text-sm md:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:brightness-110 gap-2 md:gap-2.5 px-4 md:px-6"
 				onclick={openAuthModal}
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
 				</svg>
 				<span class="hidden md:inline">로그인</span>

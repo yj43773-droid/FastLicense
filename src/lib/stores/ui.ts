@@ -15,10 +15,17 @@ const createThemeStore = () => {
 		}
 
 		subscribe((value) => {
+			// Set data-theme for DaisyUI
 			document.documentElement.setAttribute('data-theme', value);
+
+			// Set dark class for Tailwind CSS
 			const isDark = value === 'fastsaas-dark';
 			document.documentElement.classList.toggle('dark', isDark);
+
+			// Set color-scheme for native elements
 			document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+
+			// Persist to localStorage
 			localStorage.setItem('theme', value);
 		});
 	}

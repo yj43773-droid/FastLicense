@@ -33,8 +33,12 @@
 		@apply outline-none ring-2 ring-primary ring-offset-2;
 	}
 
+	html {
+		scroll-behavior: smooth;
+	}
+
 	body {
-		@apply min-h-screen bg-base-100 text-base-content antialiased;
+		@apply min-h-screen bg-base-100 dark:bg-base-200 text-base-content dark:text-base-content transition-colors duration-300 antialiased;
 		font-family: 'Pretendard Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -51,11 +55,6 @@
 	button, a, input, textarea, select {
 		@apply transition-all;
 		transition-duration: var(--transition-base);
-	}
-
-	/* Smooth scrolling */
-	html {
-		scroll-behavior: smooth;
 	}
 
 	/* Better selection color */
@@ -76,7 +75,7 @@
 
 	/* Modern card with better shadows */
 	.card-modern {
-		@apply rounded-2xl border border-base-300 bg-base-100 shadow-sm transition-all duration-300;
+		@apply rounded-2xl border border-base-200 dark:border-base-300 bg-base-100 dark:bg-base-200 shadow-sm transition-all duration-300;
 	}
 
 	.card-modern:hover {
@@ -96,8 +95,13 @@
 
 	/* Better input focus */
 	.input:focus, .textarea:focus, .select:focus {
-		@apply border-primary ring-2 ring-primary;
+		@apply border-primary ring-2 ring-primary ring-offset-1 dark:ring-offset-0;
 		box-shadow: 0 0 0 4px color-mix(in srgb, hsl(var(--p)) 20%, transparent);
+	}
+
+	/* Input styling for dark mode */
+	.input, .textarea, .select {
+		@apply dark:bg-base-300 dark:text-base-content dark:border-base-400;
 	}
 
 	/* Skeleton loading */
