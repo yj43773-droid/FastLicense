@@ -101,7 +101,7 @@
 
 	/* Input styling for dark mode */
 	.input, .textarea, .select {
-		@apply dark:bg-base-300 dark:text-base-content dark:border-base-400;
+		@apply dark:bg-base-300 dark:text-base-content dark:border-base-300;
 	}
 
 	/* Skeleton loading */

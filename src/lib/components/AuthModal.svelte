@@ -132,7 +132,7 @@
 			<div class="space-y-3">
 				<button
 					type="button"
-					class="btn btn-lg w-full gap-3 bg-white dark:bg-base-300 hover:bg-gray-50 dark:hover:bg-base-400 text-gray-700 dark:text-base-content border-2 border-gray-200 dark:border-base-400 hover:border-primary/30 shadow-md hover:shadow-lg transition-all duration-300"
+					class="btn btn-lg w-full gap-3 bg-white dark:bg-base-300 hover:bg-gray-50 dark:hover:bg-base-300 text-gray-700 dark:text-base-content border-2 border-gray-200 dark:border-base-300 hover:border-primary/30 shadow-md hover:shadow-lg transition-all duration-300"
 					class:loading={loadingProvider === 'google'}
 					class:opacity-50={loadingProvider !== null && loadingProvider !== 'google'}
 					onclick={handleGoogleLogin}
