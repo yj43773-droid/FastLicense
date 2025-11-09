@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**FastSaaS** is an online learning management system (LMS) focused on professional certification exam preparation. It's a full-stack SvelteKit application with a Korean-speaking user base, built with Svelte 5, TypeScript, Tailwind CSS, and Supabase backend integration (in progress).
+**FastLicense** is an online learning management system (LMS) focused on professional certification exam preparation. It's a full-stack SvelteKit application with a Korean-speaking user base, built with Svelte 5, TypeScript, Tailwind CSS, and Supabase backend integration (in progress).
 
 ## Common Development Commands
 
@@ -195,9 +195,9 @@ PUBLIC_KAKAO_REDIRECT_URI=http://localhost:5173/auth/callback
 ```
 
 **Theme System**:
-- DaisyUI themes: `fastsaas` (light), `fastsaas-dark` (dark)
-- Stored in localStorage
-- Toggled via HeaderNav component
+- Single DaisyUI theme: `fastsaas`
+- Applied globally via the root layout’s `data-theme`
+- No runtime toggles; keep styling consistent with the light palette
 
 ### Important Implementation Notes
 

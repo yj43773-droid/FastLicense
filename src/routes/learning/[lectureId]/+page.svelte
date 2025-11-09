@@ -94,7 +94,7 @@
 </script>
 
 <svelte:head>
-	<title>학습하기 | {data.lesson?.course.title ?? 'FastSaaS'}</title>
+	<title>학습하기 | {data.lesson?.course.title ?? 'FastLicense'}</title>
 	<meta name="robots" content="noindex" />
 </svelte:head>
 

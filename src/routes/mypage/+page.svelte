@@ -42,7 +42,7 @@
 </script>
 
 <svelte:head>
-	<title>마이페이지 | FastSaaS</title>
+	<title>마이페이지 | FastLicense</title>
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
@@ -125,10 +125,10 @@
 					</div>
 					<input type="text" class="input input-bordered" bind:value={address} placeholder="주소를 입력하세요" />
 				</label>
-				<div class="md:col-span-2 flex items-center gap-4">
+				<div class="md:col-span-2 flex flex-wrap items-center gap-4">
 					<button
 						type="button"
-						class="btn btn-primary gap-2"
+						class="btn gap-2 border border-primary/60 bg-primary text-primary-content shadow-lg hover:border-primary hover:shadow-xl"
 						onclick={saveProfile}
 						disabled={isSaving}
 						class:loading={isSaving}

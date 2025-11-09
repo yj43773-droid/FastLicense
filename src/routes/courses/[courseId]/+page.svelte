@@ -42,12 +42,12 @@
 </script>
 
 <svelte:head>
-	<title>{data.course.title} | FastSaaS</title>
+	<title>{data.course.title} | FastLicense</title>
 	<meta name="description" content={data.course.subtitle ?? data.course.description ?? ''} />
-	<meta property="og:title" content={`${data.course.title} | FastSaaS`} />
+	<meta property="og:title" content={`${data.course.title} | FastLicense`} />
 	<meta
 		property="og:description"
-		content={data.course.subtitle ?? data.course.description ?? 'FastSaaS 인기 강의를 확인하세요.'}
+		content={data.course.subtitle ?? data.course.description ?? 'FastLicense 인기 강의를 확인하세요.'}
 	/>
 	{#if data.course.thumbnailUrl}
 		<meta property="og:image" content={data.course.thumbnailUrl} />

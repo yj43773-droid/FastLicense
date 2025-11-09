@@ -30,9 +30,9 @@
 </script>
 
 <svelte:head>
-	<title>강의 리스트 | FastSaaS</title>
+	<title>강의 리스트 | FastLicense</title>
 	<meta name="description" content="난이도, 검색어, 정렬 옵션으로 원하는 강의를 찾아보세요." />
-	<meta property="og:title" content="강의 리스트 | FastSaaS" />
+	<meta property="og:title" content="강의 리스트 | FastLicense" />
 	<meta property="og:description" content="난이도별 맞춤 강의를 검색해보세요." />
 </svelte:head>
 

@@ -23,7 +23,7 @@
 </script>
 
 <svelte:head>
-	<title>Mock Session Helper | FastSaaS</title>
+	<title>Mock Session Helper | FastLicense</title>
 	<meta name="robots" content="noindex" />
 </svelte:head>
 

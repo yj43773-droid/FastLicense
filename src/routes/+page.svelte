@@ -11,12 +11,12 @@
 </script>
 
 <svelte:head>
-	<title>FastSaaS | 자격증 합격을 위한 빠른 학습 플랫폼</title>
+	<title>FastLicense | 자격증 합격을 위한 빠른 학습 플랫폼</title>
 	<meta
 		name="description"
-		content="FastSaaS에서 인기 강의를 만나보세요. 맞춤 커리큘럼과 실전 대비 콘텐츠로 자격증 합격을 빠르게 준비합니다."
+		content="FastLicense에서 인기 강의를 만나보세요. 맞춤 커리큘럼과 실전 대비 콘텐츠로 자격증 합격을 빠르게 준비합니다."
 	/>
-	<meta property="og:title" content="FastSaaS | 자격증 합격을 위한 빠른 학습 플랫폼" />
+	<meta property="og:title" content="FastLicense | 자격증 합격을 위한 빠른 학습 플랫폼" />
 	<meta property="og:description" content="실전 대비 커리큘럼과 AI 학습 리포트로 합격을 앞당기세요." />
 	<meta property="og:type" content="website" />
 </svelte:head>
@@ -63,19 +63,6 @@
 						</svg>
 					</a>
 
-					<!-- Secondary CTA with Refined Style -->
-					<button
-						type="button"
-						class="group btn btn-lg bg-base-100 border border-base-300 hover:border-primary/40 text-base-content hover:text-primary shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 gap-3 font-semibold text-base backdrop-blur-sm px-10"
-						onclick={openAuthModal}
-					>
-						<div class="w-10 h-10 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors duration-300">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-							</svg>
-						</div>
-						<span>무료 상담 받기</span>
-					</button>
 				</div>
 
 				<!-- Stats Grid -->
@@ -92,53 +79,6 @@
 						<div class="text-3xl md:text-4xl font-bold text-secondary">8,540+</div>
 						<div class="text-xs md:text-sm text-base-content/60">강의 누적<br />후기</div>
 					</div>
-				</div>
-			</div>
-
-			<!-- CTA Card -->
-			<div class="card-modern w-full max-w-md lg:max-w-sm shadow-2xl backdrop-blur-sm bg-base-100/95 border-2 border-base-300 animate-fade-in">
-				<div class="card-body gap-5 p-7">
-					<div class="flex items-center gap-3">
-						<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-							</svg>
-						</div>
-						<h2 class="text-2xl font-bold">1:1 합격 코칭</h2>
-					</div>
-
-					<p class="text-sm text-base-content/70 leading-relaxed">
-						맞춤 학습 로드맵과 실전 피드백으로 합격률을 높여드립니다.<br />
-						간단한 설문만 작성하면 <span class="font-semibold text-primary">학습 플랜을 무료로</span> 받을 수 있어요.
-					</p>
-
-					<ul class="space-y-2.5 text-sm">
-						<li class="flex items-start gap-2">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-								<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-							</svg>
-							<span class="text-base-content/80">주차별 학습 목표 & 체크리스트</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-								<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-							</svg>
-							<span class="text-base-content/80">실전 모의고사 & CBT 오답 분석</span>
-						</li>
-						<li class="flex items-start gap-2">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-								<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-							</svg>
-							<span class="text-base-content/80">AI 기반 약점 보완 요약 제공</span>
-						</li>
-					</ul>
-
-					<button type="button" class="btn btn-primary btn-lg w-full shadow-lg hover:shadow-xl hover-scale gap-2 font-bold" onclick={openAuthModal}>
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-						</svg>
-						코칭 상담 신청하기
-					</button>
 				</div>
 			</div>
 		</div>
@@ -182,7 +122,7 @@
 <!-- Features Section -->
 <section class="mt-24 card-modern overflow-hidden p-0">
 	<div class="bg-gradient-to-br from-primary/5 to-accent/5 p-8 md:p-12 text-center">
-		<h2 class="text-3xl md:text-4xl font-bold mb-3">왜 FastSaaS를 선택해야 할까요?</h2>
+		<h2 class="text-3xl md:text-4xl font-bold mb-3">왜 FastLicense를 선택해야 할까요?</h2>
 		<p class="text-base text-base-content/60 max-w-2xl mx-auto">
 			단순한 강의 플랫폼을 넘어, AI 기반 맞춤 학습 시스템으로<br class="hidden sm:block" />
 			여러분의 합격을 완벽하게 지원합니다
